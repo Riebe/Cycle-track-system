@@ -1,0 +1,54 @@
+public class Cycle 
+{
+	private int ID;
+	private int dockingStationID;
+	
+	private static int lastAssignedNumber = 100;
+	
+	public Cycle()
+	{
+		ID = lastAssignedNumber;
+		lastAssignedNumber++;
+		dockingStationID = 0;
+	}
+	
+	public int getID()
+	{
+		return ID;
+	}
+	
+	public int getDockingStation()
+	{
+		return dockingStationID;
+	}
+	
+	public boolean pickUp()
+	{
+		if (dockingStationID != 0)
+		{
+			this.dockingStationID = 0;
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean park(int dockID)
+	{
+		if (dockingStationID == 0)
+		{
+			this.dockingStationID = dockID;
+			return true;
+		}
+		return false;
+	}
+	
+	public static int getNumberOfCycles(Cycle[] cycles)
+	{
+		int count = 0;
+		for(int i = 0; i < cycles.length; i++)
+		{
+			count++;
+		}
+		return count ;
+	}
+}
