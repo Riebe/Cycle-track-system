@@ -1,0 +1,39 @@
+import java.util.*;
+
+public class CycleTest 
+{
+	public static void main(String[] args) 
+	{
+		Scanner input = new Scanner(System.in);
+		int dockID;
+		int check;
+		Cycle[] cycles = new Cycle[10];
+		
+		for (int i = 0; i < cycles.length; i++)
+		{
+			Cycle cy = new Cycle();
+			cycles[i] = cy;
+			System.out.println("Enter the Docking Station you wish to assign to this bike");
+			dockID = input.nextInt();
+			if(i == 0){cycles[i].park(dockID);continue;}
+			else{check = cycles[i-1].getDockingStation();}
+			if (check != dockID){cycles[i].park(dockID);}
+			else 
+			{
+				while (check == dockID)
+				{
+					System.out.println("That Docking Station has already been allocated to a bike, please choose another one");
+					dockID = input.nextInt();
+				}
+				cycles[i].park(dockID);
+			}
+			
+		}
+		
+		for (Cycle i : cycles)
+		{
+			System.out.println(i.getDockingStation());
+		}
+	}
+
+}
